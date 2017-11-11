@@ -5,11 +5,11 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { compose } from 'redux';
-import { createStructuredSelector } from 'reselect';
 import {
   Card,
   CardImg,
@@ -21,14 +21,11 @@ import {
 import CreateHeader from 'components/CreateHeader';
 
 import injectReducer from 'utils/injectReducer';
-import injectSaga from 'utils/injectSaga';
-// import { changeUsername } from './actions';
-// import { makeSelectUsername } from './selectors';
+import { changeCategory } from './actions';
 import reducer from './reducer';
-import saga from './saga';
 import './style.css';
 
-export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class CategorySelection extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   /**
    * when initial state username is not null, submit the form to load repos
    */
@@ -67,10 +64,11 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
   }
 
   render() {
+    const { saveCategory } = this.props;
     return (
       <article>
         <Helmet>
-          <title>Home Page</title>
+          <title>Select Category</title>
           <meta name="description" content="A React.js Boilerplate application homepage" />
         </Helmet>
         <div className="container-fluid">
@@ -79,7 +77,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
             <div className="justify-content-sm-center row">
               {this.state.categories.map((category) => (
                 <div className="col col-md-3 text-left">
-                  <Link to={`/create/${category.id}`} className="category-card">
+                  <Link to={`/create/${category.id}`} className="category-card" onClick={() => { saveCategory(category.id); }}>
                     <Card>
                       <CardImg
                         top
@@ -106,24 +104,18 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
   }
 }
 
-HomePage.propTypes = {};
+CategorySelection.propTypes = {
+  saveCategory: PropTypes.func,
+};
 
 export function mapDispatchToProps(dispatch) {
   return {
-    simply: () => dispatch(),
-    // onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
-    // onSubmitForm: (evt) => {
-    //   if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-    //   dispatch(loadRepos());
-    // },
+    saveCategory: (name) => dispatch(changeCategory(name)),
   };
 }
 
-const mapStateToProps = createStructuredSelector({});
+const withConnect = connect(null, mapDispatchToProps);
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withReducer = injectReducer({ key: 'categorySelection', reducer });
 
-const withReducer = injectReducer({ key: 'home', reducer });
-const withSaga = injectSaga({ key: 'home', saga });
-
-export default compose(withReducer, withSaga, withConnect)(HomePage);
+export default compose(withReducer, withConnect)(CategorySelection);

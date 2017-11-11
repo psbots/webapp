@@ -16,7 +16,7 @@
  */
 
 import {
-  CHANGE_USERNAME,
+  CHANGE_CATEGORY,
 } from './constants';
 
 /**
@@ -24,11 +24,11 @@ import {
  *
  * @param  {name} name The new text of the input field
  *
- * @return {object}    An action object with a type of CHANGE_USERNAME
+ * @return {object}    An action object with a type of CHANGE_CATEGORY
  */
-export function changeUsername(name) {
+export function changeCategory(name) {
   return {
-    type: CHANGE_USERNAME,
+    type: CHANGE_CATEGORY,
     name,
   };
 }
