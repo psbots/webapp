@@ -12,5 +12,31 @@
     
 }
 .ScreenSelected .card-img-overlay {
-    background: #0ec4552b;
+    background: #05ad4594;
+}
+
+.selected--text {
+    font-size: 0.8rem;
+    background: #fff;
+    color: green;
+    padding: 0.2rem 0.4rem;
+}
+
+.overlay-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.overlay-container .selected-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 38px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin:auto;
 }
