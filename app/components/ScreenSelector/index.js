@@ -23,7 +23,7 @@ export default class ScreenSelector extends Component {
         >
           <CardImg top width="100%" src={this.props.imageUrl} alt="Card image cap" />
           {
-            this.state.selected ? <CardImgOverlay><h1>Selected</h1></CardImgOverlay> : null
+            this.state.selected ? <CardImgOverlay className="selectedOverlayLayer"><div className="overlay-container"><div className="selected-icon"><i className="ion-checkmark-circled mr-1"></i></div></div></CardImgOverlay> : null
           }
         </Card>
       </div>

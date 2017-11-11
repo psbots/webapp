@@ -47,7 +47,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
           <meta name="description" content="A React.js Boilerplate application homepage" />
         </Helmet>
         <div className="container-fluid pb-5 mb-5">
-          <CreateHeader heading="Pick 5 of your Favorite Options" subheading="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" />
+          <CreateHeader heading="Pick any 5 of your Favorite Options" subheading="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" isProgress progressMax="5" progressValue="3" />
           <div className="container mt-5">
             <div className="justify-content-sm-center row">
               {this.state.imageArr.map((i) => (
