@@ -7,20 +7,10 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { compose } from 'redux';
-import { createStructuredSelector } from 'reselect';
-
-import injectReducer from 'utils/injectReducer';
-import injectSaga from 'utils/injectSaga';
-// import { changeUsername } from './actions';
-// import { makeSelectUsername } from './selectors';
-import reducer from './reducer';
-import saga from './saga';
 import './style.css';
 
-export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   /**
    * when initial state username is not null, submit the form to load repos
    */
@@ -43,31 +33,3 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
     );
   }
 }
-
-HomePage.propTypes = {
-};
-
-export function mapDispatchToProps(dispatch) {
-  return {
-    simply: () => dispatch(),
-    // onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
-    // onSubmitForm: (evt) => {
-    //   if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-    //   dispatch(loadRepos());
-    // },
-  };
-}
-
-const mapStateToProps = createStructuredSelector({
-});
-
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
-
-const withReducer = injectReducer({ key: 'home', reducer });
-const withSaga = injectSaga({ key: 'home', saga });
-
-export default compose(
-  withReducer,
-  withSaga,
-  withConnect,
-)(HomePage);
