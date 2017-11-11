@@ -25,4 +25,9 @@ injectGlobal`
     min-height: 100%;
     min-width: 100%;
   }
+  .clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 `;

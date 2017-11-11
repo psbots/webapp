@@ -10,7 +10,6 @@ import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import ScreenSelector from 'components/ScreenSelector';
 import CreateHeader from 'components/CreateHeader';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
@@ -34,9 +33,47 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
         'https://cdn.pttrns.com/557/6737_f.jpg',
         'https://cdn.pttrns.com/86/7071_f.jpg',
       ],
+      colourPalette: ['red', 'green', 'blue', 'yellow'],
     };
+    this.getTiles = this.getTiles.bind(this);
+    this.renderColourPalettes = this.renderColourPalettes.bind(this);
   }
   componentDidMount() {
+  }
+
+  getTiles() {
+    const tiles = [];
+    for (let i = 0; i < 9; i += 1) {
+      tiles.push((
+        <div
+          className="tile"
+          key={i}
+          style={{
+            opacity: (i + 1) / 10,
+          }}
+        />
+      ));
+    }
+    return tiles;
+  }
+
+  renderColourPalettes() {
+    const palettes = [];
+    this.state.colourPalette.map((palette, i) => palettes.push((
+      <div
+        className="palette-board clearfix"
+        key={i} //eslint-disable-line
+        style={{
+          backgroundColor: palette,
+        }}
+      >
+        {
+          this.getTiles()
+        }
+      </div>
+      ))
+    );
+    return palettes;
   }
 
   render() {
@@ -46,27 +83,22 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
           <title>Home Page</title>
           <meta name="description" content="A React.js Boilerplate application homepage" />
         </Helmet>
-        <div className="container-fluid pb-5 mb-5">
-          <CreateHeader heading="Pick 5 of your Favorite Options" subheading="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" />
+        <div className="container-fluid">
+          <CreateHeader heading="Choose your Colour" subheading="Let us know the colours you would love to see in your App. This would make it more elegant" />
+          <div className="container mt-5 text-center">
+            {
+              this.renderColourPalettes()
+            }
+          </div>
           <div className="container mt-5">
             <div className="justify-content-sm-center row">
-              {this.state.imageArr.map((i) => (
-                <div className="col col-md-2">
-                  <div className="screenShotImageContainer">
-                    <ScreenSelector imageUrl={i} />
-                  </div>
-                </div>
-              ))}
-
+              <div className="col text-center">
+                <button className="btn btn-primary">Next Step
+                  <i className="fa fa-chevron-right ml-2" aria-hidden="true"></i>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-
-
-        <div className="fixed-bottom py-3 btm-fixed text-center px-5">
-          <button className="btn btn-primary">Next Step
-            <i className="ion-chevron-right ml-3 mr-2"></i>
-          </button>
         </div>
       </article>
     );

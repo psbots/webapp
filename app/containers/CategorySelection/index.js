@@ -19,6 +19,8 @@ import {
   CardText,
 } from 'reactstrap';
 
+import CreateHeader from 'components/CreateHeader';
+
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 // import { changeUsername } from './actions';
@@ -66,20 +68,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
           <meta name="description" content="A React.js Boilerplate application homepage" />
         </Helmet>
         <div className="container-fluid">
-          <div
-            className="justify-content-sm-center row step-heading"
-            style={{
-              background: '#f5f5f5',
-              padding: '5rem 0',
-            }}
-          >
-            <div className="col col-sm-8">
-              <h2>Select Category for your app</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-            </div>
-          </div>
-
+          <CreateHeader heading="Select Category for your app" subheading="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" />
           <div className="container mt-5">
             <div className="justify-content-sm-center row">
               {this.state.categories.map((category) => (

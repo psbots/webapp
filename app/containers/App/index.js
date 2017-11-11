@@ -13,6 +13,7 @@ import { Switch, Route } from 'react-router-dom';
 import HomePage from 'containers/HomePage/Loadable';
 import StepOne from 'containers/CategorySelection/Loadable';
 import StepTwo from 'containers/RecommendationSelection/Loadable';
+import StepThree from 'containers/ColourPalette/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import HeaderNavBar from 'components/HeaderNavBar';
@@ -35,6 +36,7 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/create" component={StepOne} />
+        <Route exact path="/create/palette" component={StepThree} />
         <Route exact path="/create/:id" component={StepTwo} />
         <Route path="/features" component={FeaturePage} />
         <Route path="" component={NotFoundPage} />
