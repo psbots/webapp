@@ -8,12 +8,12 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import StepOne from 'containers/Steps/StepOne';
 // import { changeUsername } from './actions';
 // import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
@@ -30,10 +30,13 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
     return (
       <article>
         <Helmet>
-          <title>Home Page</title>
-          <meta name="description" content="A React.js Boilerplate application homepage" />
+          <title>CopraML</title>
+          <meta name="description" content="Monsoon is coming" />
         </Helmet>
-        <StepOne />
+        <div className="text-center">
+          <h1>Build your prototype instantly</h1>
+          <Link to="/create" className="btn btn-primary">Create your prototype</Link>
+        </div>
       </article>
     );
   }
