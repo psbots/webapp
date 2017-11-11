@@ -1,0 +1,23 @@
+.palette-board {
+  width: 180px;
+  height: 180px;
+  cursor: pointer;
+  transition: transform .2s ease-in-out;
+  margin: 20px;
+  display: inline-block;
+}
+
+.palette-board:hover {
+  box-shadow: 0px 8px 15px 3px rgba(208,208,208,0.5);
+  transform: scale(1.1);
+
+}
+
+.palette-board > .tile{
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  box-sizing: border-box;
+  float: left;
+  background-color: #FFFFFF;
+}
