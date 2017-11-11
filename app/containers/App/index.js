@@ -34,8 +34,8 @@ export default function App() {
       <HeaderNavBar />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/step1" component={StepOne} />
-        <Route exact path="/step2" component={StepTwo} />
+        <Route exact path="/create" component={StepOne} />
+        <Route exact path="/create/:id" component={StepTwo} />
         <Route path="/features" component={FeaturePage} />
         <Route path="" component={NotFoundPage} />
       </Switch>
