@@ -46,7 +46,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
           <title>Home Page</title>
           <meta name="description" content="A React.js Boilerplate application homepage" />
         </Helmet>
-        <div className="container-fluid">
+        <div className="container-fluid pb-5 mb-5">
           <CreateHeader heading="Pick 5 of your Favorite Options" subheading="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" />
           <div className="container mt-5">
             <div className="justify-content-sm-center row">
@@ -60,15 +60,13 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 
             </div>
           </div>
-          <div className="container mt-5">
-            <div className="justify-content-sm-center row">
-              <div className="col text-center">
-                <button className="btn btn-primary">Next Step
-                  <i className="fa fa-chevron-right ml-2" aria-hidden="true"></i>
-                </button>
-              </div>
-            </div>
-          </div>
+        </div>
+
+
+        <div className="fixed-bottom py-3 btm-fixed text-center px-5">
+          <button className="btn btn-primary">Next Step
+            <i className="ion-chevron-right ml-3 mr-2"></i>
+          </button>
         </div>
       </article>
     );

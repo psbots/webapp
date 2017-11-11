@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './style.css';
 
 export default class CreateHeader extends Component { //eslint-disable-line
   render() {
     const { heading, subheading } = this.props;
     return (
       <div
-        className="justify-content-sm-center row"
+        className="justify-content-sm-center row step-heading"
         style={{
           background: '#f5f5f5',
           padding: '5rem 0',
