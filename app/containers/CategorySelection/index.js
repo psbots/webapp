@@ -67,7 +67,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
         </Helmet>
         <div className="container-fluid">
           <div
-            className="justify-content-sm-center row"
+            className="justify-content-sm-center row step-heading"
             style={{
               background: '#f5f5f5',
               padding: '5rem 0',

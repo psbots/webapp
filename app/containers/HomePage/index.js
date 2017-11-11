@@ -18,6 +18,7 @@ import injectSaga from 'utils/injectSaga';
 // import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import './style.css';
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   /**
@@ -33,9 +34,10 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
           <title>CopraML</title>
           <meta name="description" content="Monsoon is coming" />
         </Helmet>
-        <div className="text-center">
-          <h1>Build your prototype instantly</h1>
-          <Link to="/create" className="btn btn-primary">Create your prototype</Link>
+        <div className="text-center back-img--things">
+          <div className="copraLogo"><span role="img" aria-label="myran" >🌴</span> Copra<span>ML</span> <i className="flash-div ion-flash mx-3"></i> <span className="wireframe--logo">wireframer</span></div>
+          <h1 className="hero-headline">Build App Prototypes using the power of AI.</h1>
+          <Link to="/create" className="btn btn-primary">Create your prototype <i className="ion-chevron-right mx-2"></i></Link>
         </div>
       </article>
     );
