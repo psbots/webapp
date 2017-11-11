@@ -17,7 +17,7 @@ import {
 
 // The initial state of the App
 const initialState = fromJS({
-  username: '',
+  categoryName: '',
 });
 
 function categoryReducer(state = initialState, action) {
