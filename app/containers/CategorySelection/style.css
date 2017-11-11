@@ -1,0 +1,17 @@
+.category-card {
+  text-decoration: none;
+  transition: all .1s ease-in;
+  box-shadow: 0px 1px 4px 0px rgba(208,208,208,0.5);
+  display: block;
+}
+.category-card .card-body {
+  color: #696969;
+}
+.category-card .card-body h4 {
+  color: #333333;
+}
+
+.category-card:hover {
+  text-decoration: none;
+  box-shadow: 0px 8px 15px 3px rgba(208,208,208,0.5)
+}
