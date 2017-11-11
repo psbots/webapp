@@ -5,7 +5,6 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -38,23 +37,30 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
     this.state = {
       categories: [
         {
-          id: 'sn',
+          id: 'socialapp',
           name: 'Social Network',
           image: 'http://cdn3.wpbeginner.com/wp-content/uploads/2017/08/socialnetworkbuddypress.png',
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
           relatedApps: 'Facebook, Twitter',
         }, {
-          id: 'tl',
+          id: 'travelapp',
           name: 'Travel Listing App',
           image: 'https://appinstitute.com/wp-content/uploads/2014/12/Make-The-Most-Of-Your-Trip-With-These-Travel-Apps.png',
           description: 'Sed do eiusmod tempor incididunt',
           relatedApps: 'Airbnb, Expedia',
         }, {
-          id: 'jl',
-          name: 'Job Listing App',
+          id: 'bookapp',
+          name: 'Books & Education',
           image: 'http://blog.gettinghired.com/Portals/2/SunBlogNuke/162/Exciting%20job.jpg',
-          description: 'Consectetur adipiscing elit, sed do ',
-          relatedApps: 'Angel.co, Naukri',
+          description: 'Apps that are a source of information',
+          relatedApps: 'Safari, Quora, GoodReads',
+        },
+        {
+          id: 'entapp',
+          name: 'Entertainment App',
+          image: 'http://blog.gettinghired.com/Portals/2/SunBlogNuke/162/Exciting%20job.jpg',
+          description: 'Apps like ',
+          relatedApps: 'Netflix, Spotify, Shazam',
         },
       ],
     };
