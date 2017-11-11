@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import ScreenSelector from 'components/ScreenSelector';
-
+import CreateHeader from 'components/CreateHeader';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 // import { changeUsername } from './actions';
@@ -47,19 +47,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
           <meta name="description" content="A React.js Boilerplate application homepage" />
         </Helmet>
         <div className="container-fluid">
-          <div
-            className="justify-content-sm-center row"
-            style={{
-              background: '#f5f5f5',
-              padding: '5rem 0',
-            }}
-          >
-            <div className="col col-sm-8">
-              <h2>Pick 5 of your Favorite Options</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-            </div>
-          </div>
+          <CreateHeader heading="Pick 5 of your Favorite Options" subheading="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" />
           <div className="container mt-5">
             <div className="justify-content-sm-center row">
               {this.state.imageArr.map((i) => (

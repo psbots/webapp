@@ -10,7 +10,7 @@ import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-
+import CreateHeader from 'components/CreateHeader';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 // import { changeUsername } from './actions';
@@ -84,18 +84,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
           <meta name="description" content="A React.js Boilerplate application homepage" />
         </Helmet>
         <div className="container-fluid">
-          <div
-            className="justify-content-sm-center row"
-            style={{
-              background: '#f5f5f5',
-              padding: '5rem 0',
-            }}
-          >
-            <div className="col col-sm-8 text-center">
-              <h2>Choose your Colour</h2>
-              <p>Let us know the colours you would love to see in your App. This would make it more elegant</p>
-            </div>
-          </div>
+          <CreateHeader heading="Choose your Colour" subheading="Let us know the colours you would love to see in your App. This would make it more elegant" />
           <div className="container mt-5 text-center">
             {
               this.renderColourPalettes()
