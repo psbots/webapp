@@ -21,7 +21,7 @@ export default class CreateHeader extends Component { //eslint-disable-line
           </div>
         </div>
         {
-          isProgress ? <div className="row"><div style={{ width: '100%' }}><Progress style={{ height: '1px' }} value={progressValue} max={progressMax} /></div></div> : null
+          isProgress ? <div className="row"><div style={{ width: '100%' }}><Progress style={{ height: '2px', transition: 'all ease 0.2s' }} value={progressValue} max={progressMax} /></div></div> : null
         }
       </div>
     );
