@@ -11,7 +11,13 @@ const makeSelectCategoryName = () => createSelector(
   (categoryState) => categoryState.get('categoryName')
 );
 
+const makeSelectCategoryImages = () => createSelector(
+  selectCategory,
+  (categoryState) => categoryState.get('categoryImages')
+);
+
 export {
   selectCategory,
   makeSelectCategoryName,
+  makeSelectCategoryImages,
 };
