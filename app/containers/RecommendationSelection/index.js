@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { Link } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import ScreenSelector from 'components/ScreenSelector';
 import FBPreloader from 'components/FBPreloader';
@@ -22,19 +23,43 @@ import reducer from './reducer';
 import saga from './saga';
 import './style.css';
 
-export class RecommendationSelection extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class RecommendationSelection extends React.Component { // eslint-disable-line react/prefer-stateless-function
   /**
    * when initial state username is not null, submit the form to load repos
    */
   constructor(props) {
     super(props);
+    this.state = {
+      selectedScreens: [],
+    };
     this.renderPreloader = this.renderPreloader.bind(this);
+    this.clickScreenSelector = this.clickScreenSelector.bind(this);
+    this.removeItem = this.removeItem.bind(this);
     props.fetchImageByCategory();
+  }
+
+  removeItem(index) {
+    const newArray = this.state.selectedScreens.filter((_, i) => i !== index);
+    this.setState({
+      selectedScreens: newArray,
+    });
+  }
+
+  clickScreenSelector(id) {
+    const arrayPosition = this.state.selectedScreens.indexOf(id);
+    if (arrayPosition === -1) {
+      const currentState = this.state.selectedScreens;
+      currentState.push(id);
+      console.log(currentState);
+      this.setState({ selectedScreens: currentState });
+    } else {
+      this.removeItem(arrayPosition);
+    }
   }
 
   renderPreloader() {
     const loaderElements = [];
-    for (let i = 0; i < 5; i += 1) {
+    for (let i = 0; i < 4; i += 1) {
       loaderElements.push((
         <div className="col col-md-2 ml-2 mr-2">
           <div className="screenShotImageContainer">
@@ -64,7 +89,7 @@ export class RecommendationSelection extends React.PureComponent { // eslint-dis
                       categoryImages.map((image) => (
                         <div className="col col-md-2">
                           <div className="screenShotImageContainer">
-                            <ScreenSelector imageUrl={`${CATEGORY_IMAGE_URL}/${image}.jpg`} />
+                            <ScreenSelector imageUrl={`${CATEGORY_IMAGE_URL}/${image}.jpg`} toggleImageSelection={() => this.clickScreenSelector(image)} id={image} />
                           </div>
                         </div>
                     ))
@@ -80,12 +105,20 @@ export class RecommendationSelection extends React.PureComponent { // eslint-dis
             }
           </div>
         </div>
-
-
         <div className="fixed-bottom py-3 btm-fixed text-center px-5">
-          <button className="btn btn-primary">Next Step
-            <i className="ion-chevron-right ml-3 mr-2"></i>
-          </button>
+          {
+            this.state.selectedScreens && this.state.selectedScreens.length >= 5 ? (
+              <Link to="/create/palette">
+                <button className="btn btn-primary">Next Step
+                  <i className="ion-chevron-right ml-3 mr-2"></i>
+                </button>
+              </Link>
+            ) : (
+              <button className="btn btn-primary" disabled>Next Step
+                <i className="ion-chevron-right ml-3 mr-2"></i>
+              </button>
+            )
+          }
         </div>
       </article>
     );
