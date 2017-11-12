@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import ScreenSelector from 'components/ScreenSelector';
+import FBPreloader from 'components/FBPreloader';
 import CreateHeader from 'components/CreateHeader';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
@@ -35,19 +36,39 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
         'https://cdn.pttrns.com/86/7071_f.jpg',
       ],
     };
+    this.renderPreloader = this.renderPreloader.bind(this);
   }
-  componentDidMount() {
+
+  renderPreloader() {
+    const loaderElements = [];
+    for (let i = 0; i < 5; i += 1) {
+      loaderElements.push((
+        <div className="col col-md-2 ml-2 mr-2">
+          <div className="screenShotImageContainer">
+            <FBPreloader x={i * 10} />
+          </div>
+        </div>
+      ));
+    }
+    return loaderElements;
   }
 
   render() {
     return (
       <article>
         <Helmet>
-          <title>Home Page</title>
+          <title></title>
           <meta name="description" content="A React.js Boilerplate application homepage" />
         </Helmet>
         <div className="container-fluid pb-5 mb-5">
           <CreateHeader heading="Pick any 5 of your Favorite Options" subheading="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" isProgress progressMax="5" progressValue="3" />
+          <div className="container mt-5">
+            <div className="justify-content-sm-center row">
+              {
+                this.renderPreloader()
+              }
+            </div>
+          </div>
           <div className="container mt-5">
             <div className="justify-content-sm-center row">
               {this.state.imageArr.map((i) => (
