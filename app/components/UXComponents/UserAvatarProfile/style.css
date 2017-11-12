@@ -1,0 +1,19 @@
+.avatarGroup {
+padding: 1rem 0;
+}
+
+.avatarGroup--image {
+    display: inline-block;
+    width:30px;
+    margin-right: 10px;
+}
+
+.avatarGroup--image img {
+    width: 100%;
+
+}
+
+.avatarGroup--info {
+    display: inline-block;
+}
+
