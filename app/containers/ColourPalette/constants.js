@@ -10,3 +10,4 @@
  */
 
 export const CHANGE_USERNAME = 'boilerplate/Home/CHANGE_USERNAME';
+export const SAVE_COLOUR_PALETTE = 'boilerplate/colourPalette/SAVE_COLOUR_PALETTE';

@@ -1,42 +1,36 @@
 /*
- * HomePage
+ * ColourPalette
  *
  * This is the first thing users see of our App, at the '/' route
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { createStructuredSelector } from 'reselect';
 import CreateHeader from 'components/CreateHeader';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-// import { changeUsername } from './actions';
+import { saveColourPalette } from './actions';
 // import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import './style.css';
 
-export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class ColourPalette extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   /**
    * when initial state username is not null, submit the form to load repos
    */
   constructor(props) {
     super(props);
     this.state = {
-      imageArr: [
-        'https://cdn.pttrns.com/591/7530_f.jpg',
-        'https://cdn.pttrns.com/591/7525_f.jpg',
-        'https://cdn.pttrns.com/501/6842_f.jpg',
-        'https://cdn.pttrns.com/557/6737_f.jpg',
-        'https://cdn.pttrns.com/86/7071_f.jpg',
-      ],
       colourPalette: ['red', 'green', 'blue', 'yellow'],
+      activePalette: null,
     };
     this.getTiles = this.getTiles.bind(this);
     this.renderColourPalettes = this.renderColourPalettes.bind(this);
+    this.setActivePalette = this.setActivePalette.bind(this);
   }
   componentDidMount() {
   }
@@ -57,14 +51,25 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
     return tiles;
   }
 
+  setActivePalette(colour) {
+    this.setState({
+      activePalette: colour,
+    });
+  }
+
   renderColourPalettes() {
     const palettes = [];
     this.state.colourPalette.map((palette, i) => palettes.push((
-      <div
-        className="palette-board clearfix"
+      <div //eslint-disable-line
+        className={this.state.activePalette === palette ? 'palette-board clearfix active' : 'palette-board clearfix'}
         key={i} //eslint-disable-line
+        role="button"
         style={{
           backgroundColor: palette,
+        }}
+        onClick={() => {
+          this.setActivePalette(palette);
+          this.props.selectPalette(palette);
         }}
       >
         {
@@ -105,30 +110,23 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
   }
 }
 
-HomePage.propTypes = {
+ColourPalette.propTypes = {
+  selectPalette: PropTypes.func,
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
-    simply: () => dispatch(),
-    // onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
-    // onSubmitForm: (evt) => {
-    //   if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-    //   dispatch(loadRepos());
-    // },
+    selectPalette: (colour) => dispatch(saveColourPalette(colour)),
   };
 }
 
-const mapStateToProps = createStructuredSelector({
-});
+const withConnect = connect(null, mapDispatchToProps);
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
-
-const withReducer = injectReducer({ key: 'home', reducer });
+const withReducer = injectReducer({ key: 'categorySelection', reducer });
 const withSaga = injectSaga({ key: 'home', saga });
 
 export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(HomePage);
+)(ColourPalette);

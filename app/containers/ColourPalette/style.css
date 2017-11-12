@@ -6,6 +6,10 @@
   margin: 20px;
   display: inline-block;
 }
+.palette-board.active {
+  box-shadow: 0px 8px 15px 3px rgba(208,208,208,0.5);
+  transform: scale(1.1);
+}
 
 .palette-board:hover {
   box-shadow: 0px 8px 15px 3px rgba(208,208,208,0.5);

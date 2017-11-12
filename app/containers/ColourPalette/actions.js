@@ -17,6 +17,7 @@
 
 import {
   CHANGE_USERNAME,
+  SAVE_COLOUR_PALETTE,
 } from './constants';
 
 /**
@@ -30,5 +31,12 @@ export function changeUsername(name) {
   return {
     type: CHANGE_USERNAME,
     name,
+  };
+}
+
+export function saveColourPalette(colour) {
+  return {
+    type: SAVE_COLOUR_PALETTE,
+    colour,
   };
 }

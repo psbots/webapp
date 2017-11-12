@@ -12,21 +12,19 @@
 import { fromJS } from 'immutable';
 
 import {
-  CHANGE_USERNAME,
+  SAVE_COLOUR_PALETTE,
 } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
-  username: '',
+  colourPalette: null,
 });
 
 function homeReducer(state = initialState, action) {
   switch (action.type) {
-    case CHANGE_USERNAME:
-
-      // Delete prefixed '@' from the github username
+    case SAVE_COLOUR_PALETTE:
       return state
-        .set('username', action.name.replace(/@/gi, ''));
+        .set('colourPalette', action.colour);
     default:
       return state;
   }
