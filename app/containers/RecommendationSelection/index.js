@@ -15,8 +15,9 @@ import FBPreloader from 'components/FBPreloader';
 import CreateHeader from 'components/CreateHeader';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
+import { CATEGORY_IMAGE_URL } from 'containers/App/constants';
 import { getImageByCategory } from './actions';
-// import { makeSelectUsername } from './selectors';
+import { makeSelectCategoryImages } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import './style.css';
@@ -27,15 +28,6 @@ export class RecommendationSelection extends React.PureComponent { // eslint-dis
    */
   constructor(props) {
     super(props);
-    this.state = {
-      imageArr: [
-        'https://cdn.pttrns.com/591/7530_f.jpg',
-        'https://cdn.pttrns.com/591/7525_f.jpg',
-        'https://cdn.pttrns.com/501/6842_f.jpg',
-        'https://cdn.pttrns.com/557/6737_f.jpg',
-        'https://cdn.pttrns.com/86/7071_f.jpg',
-      ],
-    };
     this.renderPreloader = this.renderPreloader.bind(this);
     props.fetchImageByCategory();
   }
@@ -55,6 +47,7 @@ export class RecommendationSelection extends React.PureComponent { // eslint-dis
   }
 
   render() {
+    const { categoryImages } = this.props;
     return (
       <article>
         <Helmet>
@@ -64,23 +57,27 @@ export class RecommendationSelection extends React.PureComponent { // eslint-dis
         <div className="container-fluid pb-5 mb-5">
           <CreateHeader heading="Pick any 5 of your Favorite Options" subheading="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" isProgress progressMax="5" progressValue="3" />
           <div className="container mt-5">
-            <div className="justify-content-sm-center row">
-              {
-                this.renderPreloader()
-              }
-            </div>
-          </div>
-          <div className="container mt-5">
-            <div className="justify-content-sm-center row">
-              {this.state.imageArr.map((i) => (
-                <div className="col col-md-2">
-                  <div className="screenShotImageContainer">
-                    <ScreenSelector imageUrl={i} />
-                  </div>
+            {
+              categoryImages && categoryImages.length ? (
+                <div className="justify-content-sm-center row">
+                  {
+                      categoryImages.map((image) => (
+                        <div className="col col-md-2">
+                          <div className="screenShotImageContainer">
+                            <ScreenSelector imageUrl={`${CATEGORY_IMAGE_URL}/${image}.jpg`} />
+                          </div>
+                        </div>
+                    ))
+                  }
                 </div>
-              ))}
-
-            </div>
+              ) : (
+                <div className="justify-content-sm-center row">
+                  {
+                    this.renderPreloader()
+                  }
+                </div>
+              )
+            }
           </div>
         </div>
 
@@ -97,6 +94,7 @@ export class RecommendationSelection extends React.PureComponent { // eslint-dis
 
 RecommendationSelection.propTypes = {
   fetchImageByCategory: PropTypes.func,
+  categoryImages: PropTypes.array,
 };
 
 export function mapDispatchToProps(dispatch) {
@@ -106,6 +104,7 @@ export function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
+  categoryImages: makeSelectCategoryImages(),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
