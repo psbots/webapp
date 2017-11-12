@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import {
-  Collapse,
   Navbar,
   NavbarToggler,
   NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
 } from 'reactstrap';
 
 export default class HeaderNavBar extends Component {
@@ -27,18 +23,8 @@ export default class HeaderNavBar extends Component {
   render() {
     return (
       <Navbar color="faded" light expand="md">
-        <NavbarBrand href="/">wireframer</NavbarBrand>
+        <NavbarBrand href="/"><span role="img" aria-label="myran" >🌴</span> Copra<span>ML</span></NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
-        <Collapse isOpen={this.state.isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-            <NavItem>
-              <NavLink href="/components/">Build a new app</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">Old Apps</NavLink>
-            </NavItem>
-          </Nav>
-        </Collapse>
       </Navbar>
     );
   }
