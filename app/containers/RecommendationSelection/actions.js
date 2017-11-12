@@ -18,6 +18,7 @@
 import {
   GET_IMAGE_BY_CATEGORY,
   STORE_CATEGORY_IMAGE,
+  SET_SELECTED_IMAGES,
 } from './constants';
 
 /**
@@ -37,6 +38,13 @@ export function getImageByCategory(name) {
 export function storeCategoryImage(images) {
   return {
     type: STORE_CATEGORY_IMAGE,
+    images,
+  };
+}
+
+export function setSelectedImages(images) {
+  return {
+    type: SET_SELECTED_IMAGES,
     images,
   };
 }

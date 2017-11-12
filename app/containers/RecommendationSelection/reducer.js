@@ -13,18 +13,22 @@ import { fromJS } from 'immutable';
 
 import {
   STORE_CATEGORY_IMAGE,
+  SET_SELECTED_IMAGES,
 } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
   categoryImages: [],
+  selectedImages: [],
 });
 
 function homeReducer(state = initialState, action) {
   switch (action.type) {
     case STORE_CATEGORY_IMAGE:
       // Delete prefixed '@' from the github username
-      return state.set('categoryImages', (action.images));
+      return state.set('categoryImages', action.images);
+    case SET_SELECTED_IMAGES:
+      return state.set('selectedImages', action.images);
     default:
       return state;
   }

@@ -17,7 +17,7 @@ import CreateHeader from 'components/CreateHeader';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import { CATEGORY_IMAGE_URL } from 'containers/App/constants';
-import { getImageByCategory } from './actions';
+import { getImageByCategory, setSelectedImages } from './actions';
 import { makeSelectCategoryImages } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -55,6 +55,7 @@ export class RecommendationSelection extends React.Component { // eslint-disable
     } else {
       this.removeItem(arrayPosition);
     }
+    this.props.saveSelectedImages(this.state.selectedScreens);
   }
 
   renderPreloader() {
@@ -128,11 +129,16 @@ export class RecommendationSelection extends React.Component { // eslint-disable
 RecommendationSelection.propTypes = {
   fetchImageByCategory: PropTypes.func,
   categoryImages: PropTypes.array,
+  saveSelectedImages: PropTypes.func,
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
     fetchImageByCategory: () => dispatch(getImageByCategory()),
+    saveSelectedImages: (images) => {
+      console.log(images);
+      dispatch(setSelectedImages(images));
+    },
   };
 }
 

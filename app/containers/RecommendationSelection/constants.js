@@ -11,3 +11,4 @@
 
 export const GET_IMAGE_BY_CATEGORY = 'boilerplate/Recommendation/GET_IMAGE_BY_CATEGORY';
 export const STORE_CATEGORY_IMAGE = 'boilerplate/Recommendation/STORE_CATEGORY_IMAGE';
+export const SET_SELECTED_IMAGES = 'boilerplate/Recommendation/SET_SELECTED_IMAGES';
