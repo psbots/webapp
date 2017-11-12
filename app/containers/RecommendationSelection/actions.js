@@ -16,7 +16,8 @@
  */
 
 import {
-  CHANGE_USERNAME,
+  GET_IMAGE_BY_CATEGORY,
+  STORE_CATEGORY_IMAGE,
 } from './constants';
 
 /**
@@ -26,9 +27,16 @@ import {
  *
  * @return {object}    An action object with a type of CHANGE_USERNAME
  */
-export function changeUsername(name) {
+export function getImageByCategory(name) {
   return {
-    type: CHANGE_USERNAME,
+    type: GET_IMAGE_BY_CATEGORY,
     name,
+  };
+}
+
+export function storeCategoryImage(images) {
+  return {
+    type: STORE_CATEGORY_IMAGE,
+    images,
   };
 }

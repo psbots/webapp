@@ -1,11 +1,11 @@
 /*
- * HomePage
+ * RecommendationSelection
  *
  * This is the first thing users see of our App, at the '/' route
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -15,13 +15,13 @@ import FBPreloader from 'components/FBPreloader';
 import CreateHeader from 'components/CreateHeader';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-// import { changeUsername } from './actions';
+import { getImageByCategory } from './actions';
 // import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import './style.css';
 
-export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class RecommendationSelection extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   /**
    * when initial state username is not null, submit the form to load repos
    */
@@ -37,6 +37,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
       ],
     };
     this.renderPreloader = this.renderPreloader.bind(this);
+    props.fetchImageByCategory();
   }
 
   renderPreloader() {
@@ -94,17 +95,13 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
   }
 }
 
-HomePage.propTypes = {
+RecommendationSelection.propTypes = {
+  fetchImageByCategory: PropTypes.func,
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
-    simply: () => dispatch(),
-    // onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
-    // onSubmitForm: (evt) => {
-    //   if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-    //   dispatch(loadRepos());
-    // },
+    fetchImageByCategory: () => dispatch(getImageByCategory()),
   };
 }
 
@@ -113,11 +110,11 @@ const mapStateToProps = createStructuredSelector({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'home', reducer });
+const withReducer = injectReducer({ key: 'categorySelection', reducer });
 const withSaga = injectSaga({ key: 'home', saga });
 
 export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(HomePage);
+)(RecommendationSelection);

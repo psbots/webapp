@@ -9,4 +9,5 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const CHANGE_USERNAME = 'boilerplate/Home/CHANGE_USERNAME';
+export const GET_IMAGE_BY_CATEGORY = 'boilerplate/Recommendation/GET_IMAGE_BY_CATEGORY';
+export const STORE_CATEGORY_IMAGE = 'boilerplate/Recommendation/STORE_CATEGORY_IMAGE';
