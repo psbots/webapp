@@ -1,0 +1,18 @@
+.card-block--img {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: #ccc;
+}
+
+.card-block--info {
+    display: inline-block;
+}
+
+.card-shadow {
+    box-shadow: 1px 1px 8px rgba(106, 106, 106, 0.4);
+}
+
+.card-block {
+    padding: 0.8rem;
+}
